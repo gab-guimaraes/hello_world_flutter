@@ -1,49 +1,59 @@
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 main() {
-  runApp(TelaLoginSenha());
+  runApp(const LoginPage());
 }
 
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
-class TelaLoginSenha extends StatelessWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String email = '';
+  String password = '';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Login'),
+        home: Scaffold(
+            body: Material(
+                child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+        const Text('Welcome', style: TextStyle(fontSize: 30)),
+        const SizedBox(height: 40),
+        TextField(
+            onChanged: (text) {
+              email = text;
+            },
+            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(
+                labelText: 'Email', border: OutlineInputBorder())),
+        const SizedBox(height: 10),
+        TextField(
+          onChanged: (text) {
+            password = text;
+          },
+          obscureText: true,
+          decoration: const InputDecoration(
+              labelText: 'Senha', border: OutlineInputBorder()),
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const TextField(
-                  decoration: InputDecoration(
-                    labelText: 'E-mail',
-                  ),
-                ),
-                const SizedBox(height: 16.0),
-                const TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Senha',
-                  ),
-                  obscureText: true,
-                ),
-                const SizedBox(height: 16.0),
-                ElevatedButton(
-                  onPressed: () {
-                    // Implemente a lógica de autenticação aqui
-                  },
-                  child: const Text('Entrar'),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+        const SizedBox(height: 15),
+        ElevatedButton(
+            onPressed: () {
+              if (email == "dedito182@gmail.com" && password == "@blink182") {
+                print('correto');
+              } else {
+                print('errado');
+              }
+            },
+            child: const Text('Entrar'))
+      ]),
+    ))));
   }
 }
