@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hello_world/main.dart';
 
-main() {
-  runApp(const LoginPage());
+void main() {
+  runApp(const MaterialApp(
+    home: LoginPage(),
+  ));
 }
 
 class LoginPage extends StatefulWidget {
@@ -48,6 +51,9 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () {
               if (email == "dedito182@gmail.com" && password == "@blink182") {
                 print('correto');
+                Navigator.push(
+                  context,
+                    MaterialPageRoute(builder: (context) => MyApp()));
               } else {
                 print('errado');
               }
